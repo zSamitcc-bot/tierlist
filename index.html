@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tier List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white">
+
+<div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-4xl font-bold mb-6 text-center">🔥 Tier List</h1>
+
+    <div id="tiers" class="space-y-6"></div>
+</div>
+
+<script>
+fetch("http://ca-01.rrhosting.eu:7575/api/top")
+.then(res => res.json())
+.then(data => {
+
+    const tiers = { S: [], A: [], B: [], C: [], D: [] };
+
+    data.forEach(p => {
+        tiers[p.tier].push(p);
+    });
+
+    let html = "";
+
+    for(let t in tiers){
+        html += `
+        <div class="bg-gray-800 p-4 rounded-xl">
+            <h2 class="text-2xl mb-3">${t} Tier</h2>
+
+            <div class="flex flex-wrap gap-3">
+                ${tiers[t].map(p => `
+                    <div class="bg-black p-3 rounded-lg shadow-lg">
+                        <b>${p.name}</b><br>
+                        🗡️ ${p.kills} kills<br>
+                        💀 ${p.deaths}
+                    </div>
+                `).join("")}
+            </div>
+        </div>
+        `;
+    }
+
+    document.getElementById("tiers").innerHTML = html;
+});
+</script>
+
+</body>
+</html>

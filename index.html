@@ -28,13 +28,17 @@ fetch("http://ca-01.rrhosting.eu:7575/api/top")
 .then(data => {
 
     data.forEach(p => {
-        let div = document.getElementById(p.tier);
-        div.innerHTML += p.name + " - " + p.kills + " kills<br>";
+        var div = document.getElementById(p.tier);
+
+        div.innerHTML += 
+            p.name + " - " + p.kills + " kills - " + p.deaths + " deaths<br>";
     });
 
 });
 </script>
 
+</body>
+</html>
 </body>
 </html>                        🗡️ ${p.kills} kills<br>
                         💀 ${p.deaths}

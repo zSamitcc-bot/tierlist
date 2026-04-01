@@ -30,8 +30,7 @@ fetch("http://ca-01.rrhosting.eu:7575/api/top")
     data.forEach(p => {
         var div = document.getElementById(p.tier);
 
-        div.innerHTML += 
-            p.name + " - " + p.kills + " kills - " + p.deaths + " deaths<br>";
+        div.innerHTML += p.name + " - " + p.kills + " kills - " + p.deaths + " deaths<br>";
     });
 
 });
